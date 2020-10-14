@@ -1,0 +1,63 @@
+
+.headerBox{
+    box-sizing: border-box;
+    width: 100%;
+    height:14%;
+    position: fixed;
+    top:0;
+    left:0;
+    padding-top:1rem;
+
+    display:flex;
+    justify-content: baseline;
+    background-image: radial-gradient(circle at 0px 0px, #0276B5 5%, #092A48 60%);
+
+}
+
+.logoBox{
+    width: 20%;
+    height: 80%;
+    margin: 1rem;
+    box-sizing: border-box;
+}
+.logo2{
+    width:80%;
+    filter: brightness(100)
+}
+
+
+.searchBarContainer{
+    width: 50%;
+    height: 80%;
+    margin: 1rem;
+    box-sizing: border-box;
+
+    padding-left: 3rem; 
+}
+
+.addItemContainer{
+    width: 10%;
+    height: 80%;
+    margin: 1rem;
+    box-sizing: border-box;
+
+    padding: 1rem; 
+
+}
+.loginButtonContainer{
+    width: 10%;
+    height: 80%;
+    margin: 1rem;
+    box-sizing: border-box;
+
+
+
+}
+.registerButtonContainer{
+    width: 10%;
+    height: 80%;
+    margin: 1rem;
+    box-sizing: border-box;
+
+
+}
