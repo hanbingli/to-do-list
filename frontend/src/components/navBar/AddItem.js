@@ -7,7 +7,6 @@ import { faPlus as faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const AddItem = props =>{
    
-    
 
 
     return(

@@ -110,6 +110,8 @@ const editItem = async (req, res, next) =>{
     item.date = date;
     
     try{
+
+
         await item.save()
     }catch(err){
         const error = new HttpError(
@@ -129,8 +131,8 @@ const deleteItem = async (req, res, next) =>{
 
     let item
     try {
-        item = await Item.findById(itemId)
-        // .populate('creator')
+
+        item = await Item.findById(itemId).populate('creator');
     } catch (err) {
         const error = new HttpError(
         'Something went wrong, could not delete item.',
@@ -139,8 +141,19 @@ const deleteItem = async (req, res, next) =>{
         return next(error)
     };
 
+    if (!item) {
+        const error = new HttpError('Could not find item for provided id.', 404)
+        return next(error)
+      }
+
     try{
-        await item.remove()
+
+        const sess = await mongoose.startSession();
+        sess.startTransaction();
+        await item.remove({ session: sess });
+        item.creator.items.pull(item);
+        await item.creator.save({ session: sess });
+        await sess.commitTransaction()
     }catch (err) {
         const error = new HttpError(
         'Something went wrong, could not save deleted item.',
@@ -155,15 +168,36 @@ const deleteItem = async (req, res, next) =>{
 }
 
 
-const completeItem = (req, res, next) =>{
+const completeItem = async (req, res, next) =>{
 
     const itemId = req.params.iid;
 
-    const itemIdex = DUMMY_ITEMS.findIndex(i=> i.id === itemId);
+    // const itemIdex = DUMMY_ITEMS.findIndex(i=> i.id === itemId);
 
-    DUMMY_ITEMS[itemIdex].completed= !DUMMY_ITEMS[itemIdex].completed;
+    // DUMMY_ITEMS[itemIdex].completed= !DUMMY_ITEMS[itemIdex].completed;
 
-    res.status(201).json({message:`status set to ${DUMMY_ITEMS[itemIdex].completed} `});
+    let item;
+    try{
+        item = await Item.findById(itemId);
+    }catch(err){
+        const error = new HttpError(
+            'something went wrong, could not set item to complete', 500
+        )
+    }
+
+    item.completed = !item.completed;
+   
+    try{
+        await item.save()
+    }catch(err){
+        const error = new HttpError(
+            'something went wrong, could not save edited item', 500
+        );
+    return next(error);
+    }
+
+
+    res.status(201).json({message:`status set to ${item.completed} `});
 
 }
 

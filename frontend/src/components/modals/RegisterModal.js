@@ -14,6 +14,10 @@ const RegisterModal = props => {
         //     props.onSubmit ? props.onSubmit : event => event.preventDefault()
         //   }
         >
+          <div className='field field_name'>   
+            <label class='label' for='name'>Name</label>   
+            <input type='text' name='name' class='input input_name'/>
+        </div>
          <div className='field field_email'>   
             <label class='label' for='email'>Email</label>   
             <input type='email' name='email' class='input input_email'/>

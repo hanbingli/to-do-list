@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -9,6 +9,11 @@ import './AddItemModal.css';
 
 
 const AddItemModal = props =>{
+    
+    const changeHandler = event =>{
+        
+    }
+
     return (
 
             <div className="addItemModal__container">

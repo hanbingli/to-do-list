@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import './NavBar.css';
 import logo2 from '../images/logo2.png';
 
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch,
+    NavLink
+  } from "react-router-dom";
+
 import AddItem from './AddItem';
 import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
