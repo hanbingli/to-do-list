@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -10,20 +10,39 @@ import './AddItemModal.css';
 
 const AddItemModal = props =>{
     
-    const changeHandler = event =>{
-        
-    }
+    const [inputData, setInputData] = useState({
+        taskName: '', 
+        taskDate: undefined,
+
+      })
+    
+      const inputChangeHandler =(event)=>{
+        const value = event.target.value
+        setInputData({ 
+          ...inputData,
+          [event.target.name]: value
+    
+        })
+    };
+
+    const submitHandler = (event) =>{
+        event.preventDefault();
+        console.log(inputData)
+    
+      }
 
     return (
 
             <div className="addItemModal__container">
-                <form className='addItemForm' method='post'>
+                <form className='addItemForm' method='post' onSubmit={submitHandler}>
                     <div className='addItemForm__taskNameContainer'>
-                        <input type ="text" id='taskName' placeholder='Add a task' />
+                        <input type ="text" name='taskName' placeholder='Add a task' 
+                         value = {inputData.taskName} onChange={inputChangeHandler}/>
                     </div>
                     <div className='addItemForm__taskButtonsContainer'>
                         <div className='taskDate'>
-                            <input type ="date" id='taskDate' />
+                            <input type ="date" name='taskDate' 
+                             value = {inputData.taskDate} onChange={inputChangeHandler}/>
                         </div>
                         <div className='addTag addTaskButtonBox' >
                             <AddItemButtons >
@@ -36,7 +55,7 @@ const AddItemModal = props =>{
                             </AddItemButtons >
                         </div>
                         <div className='addTask addTaskButtonBox'>
-                            <AddItemButtons inverse >
+                            <AddItemButtons inverse type='submit'>
                             Add Task
                             </AddItemButtons>
                         </div>

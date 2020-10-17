@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Axios from 'axios';
+
 import './App.css';
 
 import NavBar from './components/navBar/NavBar';
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <Router>
-      <UserContext.Provider value = { userData, setUserData}>
+      {/* <UserContext.Provider value = { userData, setUserData}> */}
       <Switch>
         <NavBar />
         <MainPage />
@@ -47,7 +47,7 @@ function App() {
           <RegisterModal />
       </Route> */}
       </Switch>
-      </UserContext.Provider>
+      {/* </UserContext.Provider> */}
     </Router>
    
   );

@@ -44,6 +44,7 @@ input, textarea {
 
 
 .registerSubmitButton{
+    cursor: pointer;
     margin:1rem;
     width: 80%;
     height: 4rem;

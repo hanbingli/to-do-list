@@ -49,13 +49,14 @@ const NavBar = () =>{
 
     return(
         <React.Fragment>
-            {addItemModalOpen && <Backdrop onClick={onCancel} />}
+            {/* {addItemModalOpen && <Backdrop onClick={onCancel} />} */}
             {addItemModalOpen && <AddItemModal  />}
 
-            {loginModalOpen && <Backdrop onClick={onCancel} />}
+            
             {loginModalOpen && <LoginModal  />}
+            {/* {loginModalOpen && <Backdrop onClick={onCancel} />} */}
 
-            {registerModalOpen && <Backdrop onClick={onCancel} />}
+            {/* {registerModalOpen && <Backdrop onClick={onCancel} />} */}
             {registerModalOpen && <RegisterModal  />}
 
             <div className="headerBox">

@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, useState }  from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -6,24 +6,53 @@ import { CSSTransition } from 'react-transition-group';
 import './LoginModal.css';
 
 const LoginModal = props => {
+
+  const [inputData, setInputData] = useState({
+    email: '', 
+    password:''
+  })
+
+  const inputChangeHandler =(event)=>{
+    const value = event.target.value
+    setInputData({ 
+      ...inputData,
+      [event.target.name]: value
+
+    })
+
+  }
+//   In addition to getting the value from the event target, we get the name of that target as well. This is the essential point for handling multiple input fields with one handler. We funnel all changes through that one handler but then distinguish which input the change is coming from using the name.
+
+// This example is using [evt.target.name], with the name in square brackets, to create a dynamic key name in the object. Because the form name props match the state property keys, the firstName input will set the firstName state and the lastName input will separately set the lastName state.
+
+// Also note that, because we are using a single state object that contains multiple properties, we're spreading (...state) the existing state back into the new state value, merging it manually, when calling setState. This is required when using React.useState in the solution.
+
+
+  const submitHandler = (event) =>{
+    event.preventDefault();
+    console.log(inputData)
+
+  }
+
     return (
         <div className='loginModal__container'>
        <h1>Login</h1>
         <form className ='loginModal__form'
-        //   onSubmit={
-        //     props.onSubmit ? props.onSubmit : event => event.preventDefault()
-        //   }
+          onSubmit={submitHandler}
+      
         >
          <div className='field field_email'>   
             <label class='label' for='email'>Email</label>   
-            <input type='email' name='email' class='input input_email'/>
+            <input type='email' name='email' class='input input_email' 
+            value = {inputData.email} onChange={inputChangeHandler}/>
         </div>
         <div className='field field_password'>   
             <label class='label' for='password'>Password</label>   
-            <input type='email' name='email' class='input input_email'/>
+            <input type='password' name='password' class='input input_password' 
+            value = {inputData.password} onChange={inputChangeHandler}/>
         </div>
 
-        <button onclick='' className='loginSubmitButton'>Login</button>
+        <button type='submit' className='loginSubmitButton'>Login</button>
         </form>
       </div>
  
