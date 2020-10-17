@@ -25,9 +25,32 @@ const AddItemModal = props =>{
         })
     };
 
-    const submitHandler = (event) =>{
+    const submitHandler = async (event) =>{
         event.preventDefault();
         console.log(inputData)
+
+    // try{
+    //   const response = await fetch('http://localhost:5000/api/users/signup', {
+    //     method: 'POST', 
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }, 
+    //     body: JSON.stringify({
+    //       title: inputData.taskName, 
+    //       date: inputData.taskDate, 
+    //     })
+    //   })
+
+    //   const responseData= await response.json();
+      
+    //   console.log(responseData)
+
+    // }catch(err){
+    //   console.log(err)
+
+    // }
+
+
     
       }
 

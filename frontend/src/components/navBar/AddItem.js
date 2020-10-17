@@ -10,7 +10,7 @@ const AddItem = props =>{
 
 
     return(
-        <div classname='AddItemContainer'>
+        <div className='AddItemContainer'>
             <FontAwesomeIcon
                      icon={faPlus}
                      size="2x"

@@ -28,9 +28,32 @@ const LoginModal = props => {
 // Also note that, because we are using a single state object that contains multiple properties, we're spreading (...state) the existing state back into the new state value, merging it manually, when calling setState. This is required when using React.useState in the solution.
 
 
-  const submitHandler = (event) =>{
+  const submitHandler = async (event) =>{
     event.preventDefault();
-    console.log(inputData)
+    console.log(inputData);
+
+
+    try{
+      const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({
+          email: inputData.email, 
+          password: inputData.password
+        })
+      })
+
+      const responseData= await response.json();
+      
+      console.log(responseData)
+
+    }catch(err){
+      console.log(err)
+
+    }
+
 
   }
 
@@ -42,13 +65,13 @@ const LoginModal = props => {
       
         >
          <div className='field field_email'>   
-            <label class='label' for='email'>Email</label>   
-            <input type='email' name='email' class='input input_email' 
+            <label >Email</label>   
+            <input type='email' name='email' className='input input_email' 
             value = {inputData.email} onChange={inputChangeHandler}/>
         </div>
         <div className='field field_password'>   
-            <label class='label' for='password'>Password</label>   
-            <input type='password' name='password' class='input input_password' 
+            <label >Password</label>   
+            <input type='password' name='password' className='input input_password' 
             value = {inputData.password} onChange={inputChangeHandler}/>
         </div>
 
