@@ -36,9 +36,11 @@ const MainPage = () => {
           // setError(err.message || 'Something went wrong, please try again')
           }
         }
-      fetchItems();
+   
+       fetchItems();
+     
 
-  },  [loadedItems,userId])
+  },  [])
 
 
 
@@ -54,7 +56,7 @@ const MainPage = () => {
            </div>
 
             )
-          }
+          } 
          
       </div>
      
