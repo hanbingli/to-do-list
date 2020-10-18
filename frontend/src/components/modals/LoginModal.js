@@ -1,11 +1,16 @@
-import React, { Component, useState }  from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import React, {  useState, useContext }  from 'react';
+import { AuthContext } from '../../context/AuthContext';
+
+
 
 
 import './LoginModal.css';
 
 const LoginModal = props => {
+
+  const auth = useContext(AuthContext);
+
+  const [error, setError] = useState(null)
 
   const [inputData, setInputData] = useState({
     email: '', 
@@ -46,11 +51,16 @@ const LoginModal = props => {
       })
 
       const responseData= await response.json();
-      
       console.log(responseData)
+      auth.login(responseData.userId, responseData.token);
+      console.log(auth)
+      props.switch()
+    
+ 
 
     }catch(err){
       console.log(err)
+      setError(err.message || 'Something went wrong, please try again')
 
     }
 
@@ -75,7 +85,7 @@ const LoginModal = props => {
             value = {inputData.password} onChange={inputChangeHandler}/>
         </div>
 
-        <button type='submit' className='loginSubmitButton'>Login</button>
+        <button type='submit' className='loginSubmitButton' >Login</button>
         </form>
       </div>
  

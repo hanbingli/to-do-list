@@ -44,20 +44,32 @@
     padding: 1rem; 
 
 }
-.loginButtonContainer{
+
+
+.buttonContainer{
     width: 10%;
     height: 80%;
     margin: 1rem;
     box-sizing: border-box;
-
 
 
 }
-.registerButtonContainer{
-    width: 10%;
-    height: 80%;
-    margin: 1rem;
-    box-sizing: border-box;
 
+.logoutButton{
 
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    padding:1rem;
+    border: none;
+}
+
+.logoutButton:hover{
+    Background-color: white;
+    border-radius: 5px;
+    color: #092A48;
+    transition: all .2s ease-in-out;
+    transform: scale(1.2);
 }

@@ -1,9 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './LoginButton.css';
-import LoginModal from '../modals/LoginModal'
-
-
 
 const LoginButton = props =>{
    

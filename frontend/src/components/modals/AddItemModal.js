@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import React, { useState, useContext } from 'react';
 
 import AddItemButtons from './modalButtons/AddItemButtons';
+import { AuthContext } from '../../context/AuthContext';
 
 
 import './AddItemModal.css';
 
 
 const AddItemModal = props =>{
+    const auth = useContext(AuthContext);
+    const userId = auth.userId;
+    const token = auth.token
+
+
+    const [error, setError] = useState(null)
     
     const [inputData, setInputData] = useState({
         taskName: '', 
@@ -27,28 +32,33 @@ const AddItemModal = props =>{
 
     const submitHandler = async (event) =>{
         event.preventDefault();
-        console.log(inputData)
+        console.log(inputData);
+        console.log(userId);
+        console.log(token);
 
-    // try{
-    //   const response = await fetch('http://localhost:5000/api/users/signup', {
-    //     method: 'POST', 
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }, 
-    //     body: JSON.stringify({
-    //       title: inputData.taskName, 
-    //       date: inputData.taskDate, 
-    //     })
-    //   })
+    try{
+        const response = await fetch( `http://localhost:5000/api/items/${userId}`, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        Authorization: "Bearer " + auth.token,
+        body: JSON.stringify({
+          title: inputData.taskName, 
+          date: inputData.taskDate
 
-    //   const responseData= await response.json();
-      
-    //   console.log(responseData)
+        })
+      })
 
-    // }catch(err){
-    //   console.log(err)
+      const responseData= await response.json();
+      console.log(responseData)
 
-    // }
+    props.switch()
+   
+    }catch(err){
+      console.log(err)
+
+    }
 
 
     

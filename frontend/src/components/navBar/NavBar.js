@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './NavBar.css';
 import logo2 from '../images/logo2.png';
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
-    Switch,
-    NavLink
-  } from "react-router-dom";
 
 import AddItem from './AddItem';
 import SearchBar from './SearchBar';
@@ -18,10 +11,13 @@ import AddItemModal from '../modals/AddItemModal'
 import Backdrop from '../modals/Backdrop'
 import LoginModal from '../modals/LoginModal';
 import RegisterModal from '../modals/RegisterModal';
+import { AuthContext } from '../../context/AuthContext';
+
 
 
 
 const NavBar = () =>{
+    const auth = useContext(AuthContext);
 
     const [addItemModalOpen, setAddItemModalOpen] =useState(false);
     const [loginModalOpen, setLoginModalOpen] =useState(false);
@@ -45,19 +41,32 @@ const NavBar = () =>{
         setRegisterModalOpen(false);
     }
 
+    const closeLoginModel = () =>{
+        setLoginModalOpen(false)
+    }
+
+    const closeRegisterModel = () =>{
+        setRegisterModalOpen(false)
+    }
+
+    const closeAddItemModel = () =>{
+        setAddItemModalOpen(false)
+    }
+
+
 
 
     return(
         <React.Fragment>
             {addItemModalOpen && <Backdrop onClick={onCancel} />}
-            {addItemModalOpen && <AddItemModal  />}
+            {addItemModalOpen && <AddItemModal switch={closeAddItemModel} />}
 
-            
-            {loginModalOpen && <LoginModal  />}
             {loginModalOpen && <Backdrop onClick={onCancel} />}
+            {loginModalOpen && <LoginModal switch={closeLoginModel} />}
+           
 
             {registerModalOpen && <Backdrop onClick={onCancel} />}
-            {registerModalOpen && <RegisterModal  />}
+            {registerModalOpen && <RegisterModal switch={closeRegisterModel} />}
 
             <div className="headerBox">
                 <div className='logoBox'>
@@ -69,12 +78,21 @@ const NavBar = () =>{
                 <div className ="addItemContainer">
                     <AddItem onClick={addItemHandler} />
                 </div>
-                <div className ="loginButtonContainer">
+                {!auth.isLoggedIn && (
+                <div className ="buttonContainer">
                     <LoginButton onClick={loginHandler} />
                 </div>
-                <div className ="registerButtonContainer">
+                )}
+                 {!auth.isLoggedIn && (
+                <div className ="buttonContainer">
                     <RegisterButton onClick={registerHandler} />
                 </div>
+                 )}
+                 {auth.isLoggedIn && (
+                <div className ="buttonContainer">
+                    <button className = "logoutButton" onClick = {auth.logout}>LOG OUT</button>
+                </div>
+                 )}
             
 
             </div>

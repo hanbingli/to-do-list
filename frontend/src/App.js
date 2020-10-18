@@ -1,53 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
 
 import NavBar from './components/navBar/NavBar';
 import MainPage from './components/mainPage/MainPage';
-import LoginModal from './components/modals/LoginModal';
-import RegisterModal from './components/modals/RegisterModal';
-import AddItemModal from './components/modals/AddItemModal';
 
-import AuthContext from './context/AuthContext';
+
+import { AuthContext } from './context/AuthContext';
+import { useAuth } from './hooks/auth-hook'
 
 
 
 function App() {
-  
-  // const [userData, setUserData] = useState({
-  //   token: undefined,
-  //   user: undefined,
-  // });
 
-  // useEffect(()=>{
-  //   const checkLoggedIn = async () =>{
-  //     const token = localStorage.getItem('auth-token');
-
-  //   }
-
-  // }, [])
+  const { token, login, logout, userId } = useAuth();
 
   return (
     <Router>
-      {/* <UserContext.Provider value = { userData, setUserData}> */}
+      <AuthContext.Provider 
+       value={{
+        isLoggedIn: !!token,
+        token: token,
+        userId: userId,
+        login: login,
+        logout: logout,
+      }}
+      >
       <Switch>
+       <Route path="/" exact>
         <NavBar />
         <MainPage />
-      {/* <Route path = "/" exact>
-        
-      </Route> */}
-      {/* <Route path = "/users/login" exact>
-          <LoginModal />
-      </Route>
-      <Route path = "/users/register" exact>
-          <RegisterModal />
-      </Route>
-      <Route path = "/items/register" exact>
-          <RegisterModal />
-      </Route> */}
+        </Route>
       </Switch>
-      {/* </UserContext.Provider> */}
+      </AuthContext.Provider>
     </Router>
    
   );

@@ -1,11 +1,12 @@
 import React, { Component, useState }  from 'react';
-import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+
 
 
 import './RegisterModal.css';
 
 const RegisterModal = props => {
+
+  const [error, setError] = useState(null)
 
   const [inputData, setInputData] = useState({
     name:'',
@@ -42,9 +43,13 @@ const RegisterModal = props => {
       const responseData= await response.json();
       
       console.log(responseData)
+      props.switch()
+      alert('Sign up successfully, please turn to login')
 
     }catch(err){
-      console.log(err)
+      console.log(err);
+      setError(err.message || 'Something went wrong, please try again')
+
 
     }
 
