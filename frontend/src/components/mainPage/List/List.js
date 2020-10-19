@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { AuthContext } from '../../../context/AuthContext';
 import ListItem from './ListItem';
 import './List.css';
 
@@ -18,14 +17,16 @@ const List = props =>{
 
     return(
         <ul className="itemList">
+            <h1>Your to-do list:</h1>
             {
                 props.items.map(item =>(
                     <ListItem 
-                        key={item.id}
-                        tag={item.tag}
-                        content={item.content}
+                        key={item._id}
+                        tags={item.tags}
+                        title={item.title}
                         date={item.date}
                         completed={item.completed}
+                        id={item._id}
                     
                     />
                 ))

@@ -1,5 +1,8 @@
 .listItem{
-    margin: 0.5rem;
+    margin: 1rem;
+    border-top:rgba(128,128,128, 0.1) 0.03rem solid;
+    padding: 1rem;
+    text-align: center;
 }
 
 
@@ -8,6 +11,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    font: 2rem sans-serif;
 }
 
 .listItem__checkbox{

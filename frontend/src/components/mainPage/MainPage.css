@@ -1,10 +1,24 @@
-.mainContainer{
+.mainContainerOuterBox{
+
     width: 100%;
     height:86%;
     position: fixed;
     top:14%;
     left:0;
     display:flex;
+
+}
+
+
+.mainContainer{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    top:14%;
+    left:0;
+
+    display:flex;
+
 }
 
 .TagBarContainer{

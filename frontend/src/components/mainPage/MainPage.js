@@ -45,20 +45,19 @@ const MainPage = () => {
 
 
     return (
-      <div className='mainContainer'>
-          <div className='TagBarContainer'>
-             <TagBar className = 'TagBar'/>
-          </div>
-          {
-            loadedItems && (
+      <div className='mainContainerOuterBox'>
+  
+      {loadedItems && (
+         <div className='mainContainer'>
+              {/* <div className='TagBarContainer'>
+                <TagBar className = 'TagBar' items = {loadedItems} />
+              </div> */}
               <div className='ListContainer'>
-              <List className = 'List' items = {loadedItems} />
+                  <List className = 'List' items = {loadedItems} />
+              </div>
+              </div>)    } 
            </div>
-
-            )
-          } 
          
-      </div>
      
     );
   }

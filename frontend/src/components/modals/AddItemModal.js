@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 
 import AddItemButtons from './modalButtons/AddItemButtons';
 import { AuthContext } from '../../context/AuthContext';
+import AddTagModal from './AddTagModal';
 
 
 import './AddItemModal.css';
+import { set } from 'mongoose';
 
 
 const AddItemModal = props =>{
@@ -13,13 +15,30 @@ const AddItemModal = props =>{
     const token = auth.token
 
 
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    const [addTagModalOpen, setAddTagModalOpen] = useState(false);
+    const [tags, setTags] = useState([]);
+
+    const openAddTagModal = () =>{
+      setAddTagModalOpen(true)
+    };
+
+    const closeAddTagModal = () =>{
+      setAddTagModalOpen(false)
+    }
+
     
     const [inputData, setInputData] = useState({
         taskName: '', 
         taskDate: undefined,
+        taskTag: ''
+      });
 
-      })
+      const addTagHandler = (props) =>{
+        const addedTags = tags.push(props)
+        setTags(addedTags);
+      }
+    
     
       const inputChangeHandler =(event)=>{
         const value = event.target.value
@@ -45,7 +64,8 @@ const AddItemModal = props =>{
         Authorization: "Bearer " + auth.token,
         body: JSON.stringify({
           title: inputData.taskName, 
-          date: inputData.taskDate
+          date: inputData.taskDate,
+          tags: [{name: inputData.taskTag}]
 
         })
       })
@@ -65,6 +85,8 @@ const AddItemModal = props =>{
       }
 
     return (
+      <React.Fragment>
+        {addTagModalOpen && <AddTagModal submit = {addTagHandler} close={closeAddTagModal}  />}
 
             <div className="addItemModal__container">
                 <form className='addItemForm' method='post' onSubmit={submitHandler}>
@@ -77,11 +99,15 @@ const AddItemModal = props =>{
                             <input type ="date" name='taskDate' 
                              value = {inputData.taskDate} onChange={inputChangeHandler}/>
                         </div>
-                        <div className='addTag addTaskButtonBox' >
-                            <AddItemButtons >
+                        <div className='taskTag'>
+                            <input type ="text" name='taskTag' placeholder='Add a tag' 
+                             value = {inputData.taskTag} onChange={inputChangeHandler}/>
+                        </div>
+                        {/* <div className='addTag addTaskButtonBox' >
+                            <AddItemButtons onClick= {openAddTagModal} >
                                 Add a Tag
                             </AddItemButtons>
-                        </div>
+                        </div> */}
                         <div className='cancelTask addTaskButtonBox'>
                             <AddItemButtons >
                             Cancel
@@ -97,6 +123,7 @@ const AddItemModal = props =>{
                 
                 </form>
             </div>
+            </React.Fragment>
 
     )
    

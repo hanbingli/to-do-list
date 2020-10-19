@@ -4,39 +4,55 @@ import './ListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faCircle as faCircleS, faEdit as faEditS, faTrashAlt as faTrashAltS} from '@fortawesome/free-solid-svg-icons';
-
+import { AuthContext } from '../../../context/AuthContext';
 
 
 const ListItem = props =>{
-    const isCompleted = props.isCompleted;
-    console.log(isCompleted)
+    const auth = useContext(AuthContext);
+
+    const itemId = props.id
+    const isCompleted = props.completed;
 
     const[completed, setCompleted] = useState(isCompleted);
 
     const completeHandler = async() =>{
-        setCompleted(true)
-        // try{
-        //     await sendRequest(
-
-        //     )
-        // }catch(err){
-
-        // }
+        try{
+            const response = await fetch( `http://localhost:5000/api/items/complete/${itemId}`, {
+            method: 'PATCH',
+            Authorization: "Bearer " + auth.token,
+          })
+    
+          const responseData= await response.json();
+          console.log(responseData);
+          alert(`Item set to ${responseData.completed}`)
+          setCompleted(true)
+       
+        }catch(err){
+          console.log(err)
+    
+        }
     } 
-    const cancelCompleteHandler = async () => {
-        setCompleted(false)
-        // try {
-        //   await sendRequest(
-        //     `${process.env.REACT_APP_BACKEND_URL}/users/bucketlist/${props.id}`,
-        //     'PUT',
-        //     null,
-        //     {
-        //       Authorization: 'Bearer ' + auth.token,
-        //     }
-        //   )
 
-        // } catch (err) {}
-      }
+        const cancelCompleteHandler = async() =>{
+            try{
+                const response = await fetch( `http://localhost:5000/api/items/complete/${itemId}`, {
+                method: 'PATCH',
+                Authorization: "Bearer " + auth.token,
+              })
+        
+              const responseData= await response.json();
+              console.log(responseData);
+              alert(`Item set to ${responseData.completed}`)
+              setCompleted(false)
+           
+            }catch(err){
+              console.log(err)
+        
+            }
+            
+            
+        }
+
       const editHandler = async() =>{
         setCompleted(true)
         // try{
@@ -85,7 +101,7 @@ const ListItem = props =>{
                  </div>
 
                  <div className='listItem__title'>
-                     {props.content}
+                     {props.title}
                  </div>
                  <div className='listItem__date'>
                      {props.date}

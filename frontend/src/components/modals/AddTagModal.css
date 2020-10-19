@@ -1,0 +1,17 @@
+
+.addTagModal__container{
+    position: fixed;
+    background-color: white;
+    width: 60%;
+    height: 10rem;
+    margin-top: 14%;
+    margin-left: 20%;
+    border-radius: 1rem;
+
+    display:flex;
+    flex-direction: column;
+
+    background-color: white;
+    border: rgba(128,128,128, 0.1) 0.03rem solid;
+    z-index: 30;
+}

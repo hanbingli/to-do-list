@@ -25,7 +25,7 @@ router.patch('/:uid/:iid',
         itemsControllers.editItem);
 
 router.delete('/:uid/:iid', itemsControllers.deleteItem);
-router.patch('/:uid/:iid/complete', itemsControllers.completeItem);
+router.patch('/complete/:iid', itemsControllers.completeItem);
 
 
 
