@@ -11,6 +11,7 @@ import Backdrop from '../../modals/Backdrop'
 
 
 const ListItem = (props) =>{
+    const tag = props.tags[0]
     const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const [editItemModalOpen, setEditItemModalOpen] = useState(false);
@@ -159,7 +160,7 @@ const ListItem = (props) =>{
                     userId={userId} 
                     itemId = {itemId}
                     taskName = {props.title}
-                    tag = {props.tags[0].name}
+                    tag = {tag.name}
                     
                     />
                 )}
@@ -172,10 +173,11 @@ const ListItem = (props) =>{
                     <div className='listItem__title'>
                         {props.title}
                     </div>
-                    <div className='listItem__tags'>
-                        {props.tags[0].name}
+                    {tag && ( <div className='listItem__tags'>
+                        {tag.name}
 
-                    </div>
+                    </div>) }
+                   
 
                 </div>
                 <div className='listItem__content__info2'>

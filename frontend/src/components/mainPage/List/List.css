@@ -1,7 +1,9 @@
 .itemList{
     width:100%;
+    height: fit-content;
     margin:3rem;
     padding: 1rem;
     list-style: none;
+    overflow: scroll;
 
 }
