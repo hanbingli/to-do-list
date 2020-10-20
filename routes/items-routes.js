@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.get('/:uid', itemsControllers.getItems);
 
+
 router.post('/:uid', 
     [check('title')
         .not()
@@ -18,14 +19,17 @@ router.post('/:uid',
 ],
     itemsControllers.createItem);
 
+router.patch('/:iid', itemsControllers.completeItem);
+
 router.patch('/:uid/:iid', 
-        check('title')
+        [check('title')
         .not()
         .isEmpty(),
+        ],
         itemsControllers.editItem);
 
 router.delete('/:uid/:iid', itemsControllers.deleteItem);
-router.patch('/complete/:iid', itemsControllers.completeItem);
+
 
 
 

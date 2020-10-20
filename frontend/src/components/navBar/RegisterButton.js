@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './RegisterButton.css';
 
 
 const RegisterButton = props =>{

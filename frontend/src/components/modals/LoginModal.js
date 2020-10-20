@@ -72,15 +72,14 @@ const LoginModal = props => {
        <h1>Login</h1>
         <form className ='loginModal__form'
           onSubmit={submitHandler}
-      
         >
          <div className='field field_email'>   
-            <label >Email</label>   
+            <label >Email: </label>   
             <input type='email' name='email' className='input input_email' 
             value = {inputData.email} onChange={inputChangeHandler}/>
         </div>
         <div className='field field_password'>   
-            <label >Password</label>   
+            <label >Password: </label>   
             <input type='password' name='password' className='input input_password' 
             value = {inputData.password} onChange={inputChangeHandler}/>
         </div>

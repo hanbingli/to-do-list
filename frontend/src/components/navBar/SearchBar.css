@@ -1,6 +1,33 @@
+.searchBar{
+    width: 100%;
+    height: 100%;
+    margin:0;
+    padding:0;
+   
+    align-self: center;
+
+}
+.searchForm{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    align-self: center;
+
+}
+.search-input{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    align-self: center;
+   
+    width:80%;
+    height: 90%;
+    font: 1.3rem;
+}
+
 .searchButton{
-    width: 5 rem;
-    height: 4 rem;
+    width:10%;
+    height: 90%;
     cursor: pointer;
     padding: 1rem;
     border: none;

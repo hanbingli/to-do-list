@@ -6,7 +6,7 @@ import AddTagModal from './AddTagModal';
 
 
 import './AddItemModal.css';
-import { set } from 'mongoose';
+
 
 
 const AddItemModal = props =>{

@@ -20,8 +20,8 @@ const SearchBar = () =>{
 
 
     return(
-        <div className='SearchBar'>
-            <form 
+        <div className='searchBar'>
+            <form className = 'searchForm'
             // className={isMobile ? 'searchMobileForm' : 'searchForm'}
             >
                 <input

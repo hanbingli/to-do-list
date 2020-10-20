@@ -4,6 +4,7 @@ import ListItem from './ListItem';
 import './List.css';
 
 const List = props =>{
+    console.log(props)
     
 
 
@@ -27,6 +28,8 @@ const List = props =>{
                         date={item.date}
                         completed={item.completed}
                         id={item._id}
+                        onDelete={props.onDeleteItem}
+                        userId = {item.creator}
                     
                     />
                 ))

@@ -88,7 +88,7 @@ const editItem = async (req, res, next) => {
 
     const userId = req.params.uid;
     const itemId = req.params.iid;
-    const { title, date } = req.body;
+    const { title, date, tags } = req.body;
 
     let item;
     try {
@@ -101,6 +101,7 @@ const editItem = async (req, res, next) => {
 
     item.title = title;
     item.date = date;
+    item.tags = tags;
 
     try {
 

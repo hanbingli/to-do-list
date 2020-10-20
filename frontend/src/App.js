@@ -31,6 +31,7 @@ function App() {
        <Route path="/" exact>
         <NavBar />
         {token && <MainPage />}
+ 
         </Route>
       </Switch>
       </AuthContext.Provider>
