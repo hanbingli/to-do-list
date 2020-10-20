@@ -38,6 +38,7 @@ const EditItemModal = props =>{
     const submitHandler = async (event) =>{
         event.preventDefault();
         console.log(inputData);
+        
 
     try{
         const response = await fetch( `http://localhost:5000/api/items/${userId}/${itemId}`, {
@@ -58,6 +59,7 @@ const EditItemModal = props =>{
       console.log(responseData)
 
     props.onClose()
+    alert('Item successfully edited')
    
     }catch(err){
       console.log(err)
@@ -67,7 +69,7 @@ const EditItemModal = props =>{
     const content = (
 
         <div className="editItemModal__container">
-            <h2>Edit your task</h2>
+            <h3>Edit your task</h3>
              <form className='editItemForm' method='post' onSubmit={submitHandler}>
                 <div className='editItemForm__taskNameContainer'>
                     <input type ="text" name='taskName' placeholder={prevTaskName} 

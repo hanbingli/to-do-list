@@ -6,8 +6,6 @@ import './List.css';
 const List = props =>{
     console.log(props)
     
-
-
     if(props.items.length === 0){
         return(
             <div className='no-item'>

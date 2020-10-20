@@ -34,7 +34,7 @@ const MainPage = () => {
       };
 
     fetchItems();
-  }, [sendRequest, userId]);
+  }, [sendRequest]);
 
 
   const itemDeleteHandler = (deletedItemId) =>{

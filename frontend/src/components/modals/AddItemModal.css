@@ -3,8 +3,8 @@
     position: fixed;
     background-color: white;
     width: 60%;
-    height: 10rem;
-    margin-top: 14%;
+    height: 8rem;
+    margin-top: 10%;
     margin-left: 20%;
     border-radius: 1rem;
 
@@ -15,15 +15,15 @@
     z-index: 25;
 }
 
-form {
+.addItemForm {
 
     margin: 0 auto;
     width: 100%;
-
-    padding: 1em;
+    padding: 0.3em;
+    font-size: x-small;
   }
   
-input, textarea {
+/* input, textarea {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid black;
@@ -31,14 +31,14 @@ input, textarea {
     width: 80%;
     box-sizing: border-box;
 
-  }
-  .taskDate{
+  } */
+  /* .taskDate{
       font: 0.5rem;
-  }
+  } */
 
 
 .addItemForm__taskNameContainer{
-    width:90%;
+    width:100%;
     height:40%;
     margin:1rem;
 }
@@ -54,12 +54,16 @@ input, textarea {
 
 .taskDate{
     width: 30%;
-    height: 80%;
+    height: 100%;
+    /* border: red solid 1px; */
+    align-self: center;
 
 }
 
 .taskTag{
     width: 30%;
+    height: 100%;
+    /* border: red solid 1px; */
 }
 
 .addTaskButtonBox{
@@ -70,7 +74,6 @@ input, textarea {
 .addTaskButtons{
     width: 100%;
     height: 100%;
-   
     background-color: white;
     border: rgba(128,128,128, 0.1) 0.03rem solid;
 
@@ -83,7 +86,6 @@ input, textarea {
 
 .addTask__button{
     background-color:   #0276B5;
-   
     border: 1px red solid;
     
 }

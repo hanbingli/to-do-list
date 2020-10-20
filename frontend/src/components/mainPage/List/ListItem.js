@@ -126,6 +126,7 @@ const ListItem = (props) =>{
               }
             );
             props.onDelete(itemId)
+            alert('Item successfully deleted.')
           } catch (err) {}
   
     } 
@@ -133,7 +134,7 @@ const ListItem = (props) =>{
 
     return(
         <li className='listItem'>
-            <div className='listItem__content'>
+    
             <div className="listItem__checkbox listItemContents">
                 {!completed && (
                         <FontAwesomeIcon
@@ -188,7 +189,7 @@ const ListItem = (props) =>{
                  <div className ='listItem__editButton listItemContents'>
                     <FontAwesomeIcon
                         icon={faEditS}
-                        size="2x"
+                        size="1x"
                         className="editIcon listItemContents"
                         onClick={openEditModal}
                     />
@@ -196,14 +197,14 @@ const ListItem = (props) =>{
                  <div className ='listItem__deleteButton listItemContents'>
                     <FontAwesomeIcon
                         icon={faTrashAltS}
-                        size="2x"
+                        size="1x"
                         className="deleteIcon listItemContents"
                         onClick={deleteHandler}
                     />
                  </div>
 
 
-            </div>
+
         </li>
 
     )

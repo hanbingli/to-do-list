@@ -86,7 +86,7 @@ const AddItemModal = props =>{
 
     return (
       <React.Fragment>
-        {addTagModalOpen && <AddTagModal submit = {addTagHandler} close={closeAddTagModal}  />}
+        {/* {addTagModalOpen && <AddTagModal submit = {addTagHandler} close={closeAddTagModal}  />} */}
 
             <div className="addItemModal__container">
                 <form className='addItemForm' method='post' onSubmit={submitHandler}>
