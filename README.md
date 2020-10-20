@@ -1,5 +1,14 @@
 # To-do-list App by Hanbing
 
+<h2>Getting Started</h2>
+
+To get started you can simply clone the repo and install the dependencies in the root `folder`
+
+| Steps   | with [NPM](https://www.npmjs.com/) |
+| ------- | ---------------------------------- |
+| Install | `npm install`                      |
+| Run     | `npm run dev`                      |
+
 <h2>Techs</h2>
 <ul>
   <li>MongoDB - document database</li>
