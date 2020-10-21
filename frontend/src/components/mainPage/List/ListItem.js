@@ -20,8 +20,6 @@ const ListItem = (props) =>{
     const itemId = props.id
     const isCompleted = props.completed;
 
-    console.log(userId);
-    console.log(itemId)
 
     const[completed, setCompleted] = useState(isCompleted);
 

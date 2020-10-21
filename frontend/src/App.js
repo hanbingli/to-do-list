@@ -8,6 +8,8 @@ import MainPage from './components/mainPage/MainPage';
 
 
 import { AuthContext } from './context/AuthContext';
+import { SearchContext } from './context/SearchContext';
+
 import { useAuth } from './hooks/auth-hook'
 
 
@@ -15,6 +17,10 @@ import { useAuth } from './hooks/auth-hook'
 function App() {
 
   const { token, login, logout, userId } = useAuth();
+
+  const [searchInputValue, setSearchInputValue ] = useState(null);
+
+
 
   return (
     <Router>
@@ -27,6 +33,12 @@ function App() {
         logout: logout,
       }}
       >
+        <SearchContext.Provider
+        value={{
+          searchInput:searchInputValue,
+          searchInputHandler: setSearchInputValue
+        }}
+      >
       <Switch>
        <Route path="/" exact>
         <NavBar />
@@ -34,6 +46,7 @@ function App() {
  
         </Route>
       </Switch>
+      </SearchContext.Provider>
       </AuthContext.Provider>
     </Router>
    

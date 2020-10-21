@@ -3,13 +3,18 @@ import TagBar from './TagBar/TagBar';
 import List from './List/List';
 import { AuthContext } from '../../context/AuthContext';
 import { useHttpClient } from "../../hooks/http-hook";
+import { SearchContext } from '../../context/SearchContext';
 
 
 import './MainPage.css';
 
 const MainPage = () => {
 
+
   const auth = useContext(AuthContext);
+  const { searchInput, searchInputHandler } = useContext(SearchContext);
+  console.log(searchInput)
+
   const userId = auth.userId;
   console.log(userId)
 
@@ -17,8 +22,13 @@ const MainPage = () => {
 
  
   const [loadedItems, setLoadedItems] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
+
+  const itemDeleteHandler = (deletedItemId) =>{
+    setLoadedItems((prevItems)=>{
+      prevItems.filter(i => i._id !== deletedItemId)
+    })
+  }
+ 
 
   useEffect(() => {
 
@@ -34,14 +44,28 @@ const MainPage = () => {
       };
 
     fetchItems();
-  }, [sendRequest]);
+  }, [sendRequest, auth]);
 
 
-  const itemDeleteHandler = (deletedItemId) =>{
-    setLoadedItems((prevItems)=>{
-      prevItems.filter(i => i._id !== deletedItemId)
-    })
-  }
+
+
+  useEffect(() => {
+    const searchItem = (keyword) =>{
+      setLoadedItems((prevItems)=>{
+        prevItems.filter(i=> i.title.toLowerCase().includes(keyword.toLowerCase())  )
+      })}
+
+      if(!!searchInput && loadedItems){
+        searchItem(searchInput);
+        console.log(loadedItems)
+      
+      };
+    
+    }, searchInput)
+
+  
+
+  
 
 
      
@@ -91,9 +115,16 @@ const MainPage = () => {
               {/* <div className='TagBarContainer'>
                 <TagBar className = 'TagBar' items = {loadedItems} />
               </div> */}
+              {loadedItems && (
               <div className='ListContainer'>
                   <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler}/>
               </div>
+              )}
+              {/* {searchInput  (
+              <div className='ListContainer'>
+                  <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler}/>
+              </div>
+              )} */}
               </div>
            </div>
          

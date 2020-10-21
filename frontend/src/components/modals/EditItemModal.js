@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import AddItemButtons from './modalButtons/AddItemButtons';
@@ -16,6 +16,7 @@ const EditItemModal = props =>{
     const itemId = props.itemId;
     const prevTaskName = props.taskName;
     const prevTag = props.tag;
+    // const response;
     
 
     const [error, setError] = useState(null);
@@ -32,8 +33,11 @@ const EditItemModal = props =>{
           ...inputData,
           [event.target.name]: value
     
-        })
-    };
+        })}
+  
+
+    
+
 
     const submitHandler = async (event) =>{
         event.preventDefault();

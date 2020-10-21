@@ -1,41 +1,52 @@
-import React from 'react';
+import React, {useContext, useEffect, useState, useCallback} from 'react';
 
 import './SearchBar.css';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch as faSearch } from '@fortawesome/free-solid-svg-icons';
+import { SearchContext } from '../../context/SearchContext'
 
 
 const SearchBar = () =>{
 
-    const searchHandler = () =>{
+    const [inputData, setInputData] = useState('')
+
+    const { searchInput, searchInputHandler } = useContext(SearchContext);
+
+
+   
+    const inputChangeHandler =(event)=>{
+        setInputData(event.target.value)
+     }
+
+
+    const searchHandler = async (event) =>{
+        event.preventDefault();
+        console.log(inputData);
+        searchInputHandler(inputData);
+        console.log(searchInput)
 
     }
 
-    const changeHandler = () =>{
-
-    }
-    
 
 
     return(
         <div className='searchBar'>
             <form className = 'searchForm'
-            // className={isMobile ? 'searchMobileForm' : 'searchForm'}
             >
                 <input
                     className="search-input"
-                    // value={searchState.inputs.search.value}
+                    value={inputData}
                     type="text"
                     placeholder="Search to-do list item"
-                    onChange={changeHandler}
+                    onChange={inputChangeHandler}
                 ></input>
                 <button
                     className="searchButton"
                     type="submit"
                     onClick={searchHandler}
-                    // disabled={!searchState.isValid}
+                 
                 >
                     <FontAwesomeIcon 
                     className='searchButton__icon'
