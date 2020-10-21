@@ -13,7 +13,6 @@ const MainPage = () => {
 
   const auth = useContext(AuthContext);
   const { searchInput, searchInputHandler } = useContext(SearchContext);
-  console.log(searchInput)
 
   const userId = auth.userId;
   console.log(userId)
@@ -22,6 +21,7 @@ const MainPage = () => {
 
  
   const [loadedItems, setLoadedItems] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
 
   const itemDeleteHandler = (deletedItemId) =>{
     setLoadedItems((prevItems)=>{
@@ -40,6 +40,7 @@ const MainPage = () => {
                 );
 
                 setLoadedItems(responseData.items)
+                console.log(loadedItems)
               } catch (err) {}
       };
 
@@ -48,20 +49,53 @@ const MainPage = () => {
 
 
 
+useEffect(() => {
 
-  useEffect(() => {
-    const searchItem = (keyword) =>{
-      setLoadedItems((prevItems)=>{
-        prevItems.filter(i=> i.title.toLowerCase().includes(keyword.toLowerCase())  )
-      })}
+  const searchItems = async () => {
 
-      if(!!searchInput && loadedItems){
-        searchItem(searchInput);
-        console.log(loadedItems)
+    try {
+            const responseData = await sendRequest(
+              `http://localhost:5000/api/items/${userId}/search`, 
+              'GET',
+              {
+                 body: JSON.stringify({
+                  keyword: searchInput })
+              },
+              {
+                Authorization: 'Bearer ' + auth.token,
+              }
+            );
+            setSearchResult(responseData.items)
+            console.log(searchResult)
+          } catch (err) {}
+
+  };
+
+  if(!!searchInput){
+   searchItems()
+
+  }
+  
+
+}, [sendRequest, searchInput]);
+
+
+
+
+
+  // useEffect(() => {
+  //   const searchItem = (keyword) =>{
+  //     setLoadedItems((prevItems)=>{
+  //       prevItems.filter(i=> i.title.toLowerCase().includes(keyword.toLowerCase())  )
+  //     })}
+
+  //     if(!!searchInput && loadedItems){
+  //       searchItem(searchInput);
+  //       console.log(loadedItems)
       
-      };
+  //     };
     
-    }, searchInput)
+  //   }, searchInput)
 
   
 

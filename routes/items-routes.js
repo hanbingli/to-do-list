@@ -10,6 +10,7 @@ const router = express.Router();
 // router.use(checkAuth);
 
 router.get('/:uid', itemsControllers.getItems);
+router.get('/:uid/search', itemsControllers.searchItems);
 
 
 router.post('/:uid', 

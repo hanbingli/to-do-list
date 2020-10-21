@@ -28,6 +28,30 @@ const getItems = async (req, res, next) => {
     // 因为返回的是数组
 };
 
+
+const searchItems = async (req, res, next) => {
+
+    let items;
+    try {
+        items = await Item.find({ title:   { $regex: req.body.keyword, $options: "i" } });
+    } catch (err) {
+        const error = new HttpError('Finding items failed, please try again later', 500);
+
+        return next(error);
+    }
+
+    if (items.length === 0) {
+        return res.status(404)
+            .json({ messsage: 'Could not find to-do list items with this keyword' })
+    }
+
+    res.json({ items: items.map(i => i.toObject({ getter: true })) })
+    // 因为返回的是数组
+};
+
+
+
+
 const createItem = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -220,6 +244,7 @@ const completeItem = async (req, res, next) => {
 
 
 exports.getItems = getItems;
+exports.searchItems = searchItems;
 exports.createItem = createItem;
 exports.editItem = editItem;
 exports.deleteItem = deleteItem;
