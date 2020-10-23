@@ -117,7 +117,7 @@ const MainPage = (props) => {
               {/* <div className='TagBarContainer'>
                 <TagBar className = 'TagBar' items = {loadedItems} />
               </div> */}
-              {loadedItems && (
+              {!!loadedItems && (
               <div className='ListContainer'>
                   <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler} onChange={props.onChange}/>
               </div>

@@ -53,6 +53,11 @@ const LoginModal = props => {
       const responseData= await response.json();
       console.log(responseData)
       auth.login(responseData.userId, responseData.token);
+      if(responseData.message){
+        alert(`${responseData.message}`)
+      }else{
+        alert('Logged in successfully.')
+      }
       console.log(auth)
       props.switch()
     
