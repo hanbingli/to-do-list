@@ -5,6 +5,8 @@ import './App.css';
 
 import NavBar from './components/navBar/NavBar';
 import MainPage from './components/mainPage/MainPage';
+import SearchResult from './components/mainPage/SearchResult'
+
 
 
 import { AuthContext } from './context/AuthContext';
@@ -18,38 +20,60 @@ function App() {
 
   const { token, login, logout, userId } = useAuth();
 
-  const [searchInputValue, setSearchInputValue ] = useState(null);
+  const [searchInputValue, setSearchInputValue] = useState(null);
+
+  let routes;
+
+  if (token) {
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <MainPage />
+        </Route>
+        <Route path="/search" exact>
+          <SearchResult />
+        </Route>
+      </Switch>
+    )
+  }else{
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <div className="welcomePage">
+            <h2 className='welcomePage1'>Please Login or Register</h2>
+            <h2 className='welcomePage2'>to manage your day.</h2>
+          </div>
+        </Route>
+      </Switch>
+    )
+  }
 
 
 
   return (
-    <Router>
-      <AuthContext.Provider 
-       value={{
+    <AuthContext.Provider
+      value={{
         isLoggedIn: !!token,
         token: token,
         userId: userId,
         login: login,
         logout: logout,
       }}
-      >
-        <SearchContext.Provider
+    >
+      <SearchContext.Provider
         value={{
-          searchInput:searchInputValue,
+          searchInput: searchInputValue,
           searchInputHandler: setSearchInputValue
         }}
       >
-      <Switch>
-       <Route path="/" exact>
-        <NavBar />
-        {token && <MainPage />}
- 
-        </Route>
-      </Switch>
+        <Router>
+          <NavBar />
+          <main>{routes}</main>
+        </Router>
       </SearchContext.Provider>
-      </AuthContext.Provider>
-    </Router>
-   
+    </AuthContext.Provider>
+
+
   );
 }
 

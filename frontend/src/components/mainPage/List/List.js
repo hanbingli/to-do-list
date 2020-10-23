@@ -9,7 +9,9 @@ const List = props =>{
     if(props.items.length === 0){
         return(
             <div className='no-item'>
-                <h2>No to-do item found.</h2>
+                <h3 className="no-item__phrase1">No to-do item found. </h3>
+                <h3 className="no-item__phrase2"> Maybe create one? </h3>
+                <h3 className="no-item__phrase2"> Just click on the + above. </h3>
             </div>
         );
     }
@@ -28,6 +30,7 @@ const List = props =>{
                         id={item._id}
                         onDelete={props.onDeleteItem}
                         userId = {item.creator}
+                        onChange = {props.onChange}
                     
                     />
                 ))

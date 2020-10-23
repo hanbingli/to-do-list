@@ -23,7 +23,7 @@
     font-size: x-small;
   }
   
-/* input, textarea {
+input, textarea {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid black;
@@ -31,7 +31,7 @@
     width: 80%;
     box-sizing: border-box;
 
-  } */
+  }
   /* .taskDate{
       font: 0.5rem;
   } */

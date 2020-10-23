@@ -9,3 +9,19 @@
 
 
 }
+
+.no-item{
+    padding:3rem 5rem
+}
+
+.no-item__phrase1{
+    color: #092A48;
+    font-size: 2rem;
+
+}
+
+.no-item__phrase2{
+    color: #0276B5;
+    font-size: 2rem;
+    
+  }

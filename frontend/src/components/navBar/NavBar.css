@@ -25,6 +25,13 @@
     filter: brightness(100)
 }
 
+.bannerPhrase{
+    color:white;
+    padding-left: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
 
 .searchBarContainer{
     

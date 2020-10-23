@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState, useCallback} from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './SearchBar.css';
 
@@ -9,6 +10,7 @@ import { SearchContext } from '../../context/SearchContext'
 
 
 const SearchBar = () =>{
+    const history = useHistory();
 
     const [inputData, setInputData] = useState('')
 
@@ -21,11 +23,14 @@ const SearchBar = () =>{
      }
 
 
-    const searchHandler = async (event) =>{
+    const searchHandler = (event) =>{
         event.preventDefault();
         console.log(inputData);
         searchInputHandler(inputData);
         console.log(searchInput)
+        setInputData('')
+        history.push('/search');
+  
 
     }
 

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import AddItemButtons from './modalButtons/AddItemButtons';
 import { AuthContext } from '../../context/AuthContext';
@@ -10,6 +11,7 @@ import './AddItemModal.css';
 
 
 const AddItemModal = props =>{
+    const history = useHistory();
     const auth = useContext(AuthContext);
     const userId = auth.userId;
     const token = auth.token
@@ -18,6 +20,7 @@ const AddItemModal = props =>{
     const [error, setError] = useState(null);
     const [addTagModalOpen, setAddTagModalOpen] = useState(false);
     const [tags, setTags] = useState([]);
+    const [onsubmit, setOnsubmit] = useState(false);
 
     const openAddTagModal = () =>{
       setAddTagModalOpen(true)
@@ -54,9 +57,12 @@ const AddItemModal = props =>{
         console.log(inputData);
         console.log(userId);
         console.log(token);
+        setOnsubmit(!onsubmit);
+        history.push('/')
+        
 
     try{
-        const response = await fetch( `http://localhost:5000/api/items/${userId}`, {
+        const response = await fetch( `${process.env.REACT_APP_ASSET_URL}/api/items/${userId}`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'

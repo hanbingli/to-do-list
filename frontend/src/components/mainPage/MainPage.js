@@ -4,24 +4,27 @@ import List from './List/List';
 import { AuthContext } from '../../context/AuthContext';
 import { useHttpClient } from "../../hooks/http-hook";
 import { SearchContext } from '../../context/SearchContext';
-
+import SearchResult from './SearchResult'
 
 import './MainPage.css';
 
+
+
 const MainPage = () => {
 
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { searchInput, searchInputHandler } = useContext(SearchContext);
+  const [onComponentChange, setOnComponentChange] = useState(false);
 
   const auth = useContext(AuthContext);
-  const { searchInput, searchInputHandler } = useContext(SearchContext);
-
   const userId = auth.userId;
   console.log(userId)
-
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+  console.log(searchInput)
  
   const [loadedItems, setLoadedItems] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const componentChangeHandler = () =>{
+    setOnComponentChange(!onComponentChange)
+  }
 
   const itemDeleteHandler = (deletedItemId) =>{
     setLoadedItems((prevItems)=>{
@@ -31,12 +34,12 @@ const MainPage = () => {
  
 
   useEffect(() => {
+    searchInputHandler(null)
 
     const fetchItems = async () => {
-
         try {
                 const responseData = await sendRequest(
-                  `http://localhost:5000/api/items/${userId}`
+                  `${process.env.REACT_APP_ASSET_URL}/api/items/${userId}`
                 );
 
                 setLoadedItems(responseData.items)
@@ -46,39 +49,6 @@ const MainPage = () => {
 
     fetchItems();
   }, [sendRequest, auth]);
-
-
-
-useEffect(() => {
-
-  const searchItems = async () => {
-
-    try {
-            const responseData = await sendRequest(
-              `http://localhost:5000/api/items/${userId}/search`, 
-              'GET',
-              {
-                 body: JSON.stringify({
-                  keyword: searchInput })
-              },
-              {
-                Authorization: 'Bearer ' + auth.token,
-              }
-            );
-            setSearchResult(responseData.items)
-            console.log(searchResult)
-          } catch (err) {}
-
-  };
-
-  if(!!searchInput){
-   searchItems()
-
-  }
-  
-
-}, [sendRequest, searchInput]);
-
 
 
 
@@ -151,9 +121,12 @@ useEffect(() => {
               </div> */}
               {loadedItems && (
               <div className='ListContainer'>
-                  <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler}/>
+                  <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler} onChange={componentChangeHandler}/>
               </div>
               )}
+               {/* {searchInput  && (
+              <SearchResult userId={userId}  searchInput={searchInput} itemDeleteHandler= {itemDeleteHandler}/>
+              )} */}
               {/* {searchInput  (
               <div className='ListContainer'>
                   <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler}/>

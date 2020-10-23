@@ -52,7 +52,8 @@ app.use((error, req, res, next) =>{
 
 mongoose
   .connect(
-       `mongodb+srv://han:951013@cluster0.x3qb1.gcp.mongodb.net/todolist?retryWrites=true&w=majority`,
+      //  `mongodb+srv://han:951013@cluster0.x3qb1.gcp.mongodb.net/todolist?retryWrites=true&w=majority`,
+       `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.x3qb1.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

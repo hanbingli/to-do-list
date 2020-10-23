@@ -16,7 +16,7 @@ const getUsers = (req, res, next) =>{
 const signup = async (req, res, next) =>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        return next(new HttpError('Invalid inputs, please check again.', 422)
+        return next(new HttpError('Invalid inputs, please check again. Password needs to be longer than 6 characters', 422)
         ) ;
     };
     const { name, email, password } = req.body;
@@ -111,7 +111,7 @@ const login = async (req, res, next) =>{
     try {
         token = jwt.sign(
         { userId: existingUser._id, email: existingUser.email },
-        'Hanbing',
+        'hanbing',
         {
             expiresIn: '1h',
         }

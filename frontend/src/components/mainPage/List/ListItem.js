@@ -27,7 +27,7 @@ const ListItem = (props) =>{
        
         try {
           await sendRequest(
-            `http://localhost:5000/api/items/${itemId}`,
+            `${process.env.REACT_APP_ASSET_URL}/api/items/${itemId}`,
             'PATCH',
             null,
             {
@@ -64,7 +64,7 @@ const ListItem = (props) =>{
 
             try {
                 await sendRequest(
-                  `http://localhost:5000/api/items/${itemId}`,
+                  `${process.env.REACT_APP_ASSET_URL}/api/items/${itemId}`,
                   'PATCH',
                   null,
                   {
@@ -116,7 +116,7 @@ const ListItem = (props) =>{
 
         try {
             await sendRequest(
-              `http://localhost:5000/api/items/${userId}/${itemId}`,
+              `${process.env.REACT_APP_ASSET_URL}/api/items/${userId}/${itemId}`,
               'DELETE',
               null,
               {
@@ -124,7 +124,8 @@ const ListItem = (props) =>{
               }
             );
             props.onDelete(itemId)
-            alert('Item successfully deleted.')
+            alert('Item successfully deleted, please refresh your page')
+            props.onChange()
           } catch (err) {}
   
     } 
@@ -160,6 +161,7 @@ const ListItem = (props) =>{
                     itemId = {itemId}
                     taskName = {props.title}
                     tag = {tag.name}
+                    onChange={props.onChange}
                     
                     />
                 )}

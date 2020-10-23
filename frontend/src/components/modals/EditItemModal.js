@@ -42,10 +42,11 @@ const EditItemModal = props =>{
     const submitHandler = async (event) =>{
         event.preventDefault();
         console.log(inputData);
+        props.onChange()
         
 
     try{
-        const response = await fetch( `http://localhost:5000/api/items/${userId}/${itemId}`, {
+        const response = await fetch( `${process.env.REACT_APP_ASSET_URL}/api/items/${userId}/${itemId}`, {
         method: 'PATCH', 
         headers: {
           'Content-Type': 'application/json'
@@ -63,7 +64,7 @@ const EditItemModal = props =>{
       console.log(responseData)
 
     props.onClose()
-    alert('Item successfully edited')
+    alert('Item successfully edited, please refresh your page')
    
     }catch(err){
       console.log(err)

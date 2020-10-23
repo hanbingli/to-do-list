@@ -48,3 +48,25 @@
   flex-direction: column;
 
 }
+
+.main{
+  margin-top: 5rem;
+}
+
+.welcomePage{
+  margin-top: 5rem;
+  padding:3rem 5rem;
+
+}
+
+.welcomePage1{
+  color:#092A48;
+  font-size: 3rem;
+
+}
+
+.welcomePage2{
+  color: #0276B5;
+  font-size: 3rem;
+  
+}

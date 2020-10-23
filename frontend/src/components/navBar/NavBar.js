@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import {  Link } from "react-router-dom";
 import './NavBar.css';
 import logo2 from '../images/logo2.png';
 
@@ -18,6 +19,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const NavBar = () =>{
     const auth = useContext(AuthContext);
+    const token = auth.token;
 
     const [addItemModalOpen, setAddItemModalOpen] =useState(false);
     const [loginModalOpen, setLoginModalOpen] =useState(false);
@@ -70,13 +72,22 @@ const NavBar = () =>{
 
             <div className="headerBox">
                 <div className='logoBox'>
-                    <img className="logo2" src={logo2} alt='logo_TV2Z' />
+                     <Link to="/">
+                    <img className="logo2" src={logo2} alt='logo_TV2Z'  />
+                   </Link>
                 </div>
+
                 <div className ="searchBarContainer">
-                    <SearchBar />
+                {!token && <h2 className = 'bannerPhrase'>Plan your day with TV2Z</h2>
+
+                }
+                {token && (
+                      <SearchBar />
+                    )}
                 </div>
                 <div className ="addItemContainer">
-                    <AddItem onClick={addItemHandler} />
+                    {token &&  <AddItem onClick={addItemHandler} /> }
+                   
                 </div>
                 {!auth.isLoggedIn && (
                 <div className ="buttonContainer">

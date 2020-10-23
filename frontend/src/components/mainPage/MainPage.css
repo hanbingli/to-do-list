@@ -1,7 +1,6 @@
 .mainContainerOuterBox{
     width: 100%;
     min-height: 100vh;
-    margin-top:5rem;
     display:flex;
     overflow: auto;
 
@@ -9,12 +8,13 @@
 }
 
 
-.mainContainer{
+.mainContainer, .searchListContainer{
     width: 100%;
     min-height: 100vh;
+    margin-top:5rem;
     display:flex;
     overflow: auto;
-    /* border: red 1px solid; */
+    /* border: red 3px solid; */
 
 }
 
@@ -26,7 +26,7 @@
 }
 
 
-.ListContainer{
+.ListContainer, searchListContainer{
     margin:0;
-    width: 80%;
+    width: 90%;
 }

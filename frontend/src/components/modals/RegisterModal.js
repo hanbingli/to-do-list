@@ -1,5 +1,4 @@
-import React, { Component, useState }  from 'react';
-
+import React, { useState }  from 'react';
 
 
 import './RegisterModal.css';
@@ -28,7 +27,7 @@ const RegisterModal = props => {
     console.log(inputData)
 
     try{
-      const response = await fetch('http://localhost:5000/api/users/signup', {
+      const response = await fetch(`${process.env.REACT_APP_ASSET_URL}/api/users/signup`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'
@@ -43,12 +42,17 @@ const RegisterModal = props => {
       const responseData= await response.json();
       
       console.log(responseData)
+      if(responseData.message){
+        alert(`${responseData.message}`)
+      }else{
+        alert('Signed up successfully, please turn to login.')
+      }
       props.switch()
-      alert('Sign up successfully, please turn to login')
 
     }catch(err){
       console.log(err);
       setError(err.message || 'Something went wrong, please try again')
+      alert(err.message)
 
 
     }
@@ -65,12 +69,12 @@ const RegisterModal = props => {
          onSubmit={submitHandler}
         >
           <div className='field field_name'>   
-            <label class='label' for='name'>Name</label>   
+            <label className='label' for='name'>Name</label>   
             <input type='text' name='name' class='input input_name' 
             value = {inputData.name} onChange={inputChangeHandler}/>
         </div>
          <div className='field field_email'>   
-            <label class='label' for='email'>Email</label>   
+            <label className='label' for='email'>Email</label>   
             <input type='email' name='email' class='input input_email'
             value = {inputData.email} onChange={inputChangeHandler}/>
         </div>

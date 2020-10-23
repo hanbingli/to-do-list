@@ -39,7 +39,7 @@ const LoginModal = props => {
 
 
     try{
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch(`${process.env.REACT_APP_ASSET_URL}/api/users/login`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const LoginModal = props => {
 
     return (
         <div className='loginModal__container'>
-       <h1>Login</h1>
+       <h2>Login</h2>
         <form className ='loginModal__form'
           onSubmit={submitHandler}
         >

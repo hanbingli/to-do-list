@@ -30,10 +30,10 @@ const getItems = async (req, res, next) => {
 
 
 const searchItems = async (req, res, next) => {
-
+    const userId = req.params.uid;
     let items;
     try {
-        items = await Item.find({ title:   { $regex: req.body.keyword, $options: "i" } });
+        items = await Item.find({ creator: userId, title:   { $regex: req.query.q, $options: "i" } });
     } catch (err) {
         const error = new HttpError('Finding items failed, please try again later', 500);
 
@@ -48,6 +48,7 @@ const searchItems = async (req, res, next) => {
     res.json({ items: items.map(i => i.toObject({ getter: true })) })
     // 因为返回的是数组
 };
+
 
 
 

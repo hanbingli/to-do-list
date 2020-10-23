@@ -1,0 +1,8 @@
+{
+  "env": {
+    "DB_USER": "han",
+    "DB_PASSWORD": "951013",
+    "DB_NAME": "todolist",
+    "JWT_KEY": "hanbing"
+  }
+}
