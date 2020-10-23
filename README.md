@@ -3,13 +3,14 @@
 
 
 <h2>App functions:</h2>
-- Signup/login with modals in homepage.
-- Access to one's own to-do list with authentication.
-- Click on "+" sign to add one's own to-do list.
-- Complete/Edit/Delete function for each to-do list item.
-- Search page that allows user to browse items with keyword.
-- Click on logo pic at topleft corner to jump to homepage.
-
+<ul>
+<li>- Signup/login with modals in homepage.</li>
+<li>- Access to one's own to-do list with authentication.</li>
+<li>- Click on "+" sign to add one's own to-do list.</li>
+<li>- Complete/Edit/Delete function for each to-do list item.</li>
+<li>- Search page that allows user to browse items with keyword.</li>
+<li>- Click on logo pic at topleft corner to jump to homepage.</li>
+</ul>
 
 <h2>Deployment: </h2>
 Now the online deployment of the project is available at: 
@@ -49,19 +50,21 @@ To get started you can simply clone the repo and install the dependencies in the
 <h3>File tree</h3>
 
 
+```
+.
 ├── Backend
-│   ├── app.js
+│   ├── app.js                                        #Server file
 │   ├── controllers
 │   │   ├── items-controllers.js
 │   │   └── users-controllers.js
-│   ├── middleware
+│   ├── middleware                          
 │   │   └── check-auth.js
-│   ├── models
+│   ├── models                                        #MongoDB database Models
 │   │   ├── http-error.js
 │   │   ├── item.js
 │   │   ├── tag.js
 │   │   └── user.js
-│   └── routes
+│   └── routes                                        #Backend routes
 │       ├── items-routes.js
 │       └── users-routes.js
 └── Frontend
@@ -76,13 +79,13 @@ To get started you can simply clone the repo and install the dependencies in the
     └── src
         ├── .DS_Store
         ├── App.css
-        ├── App.js
+        ├── App.js                                   
         ├── App.test.js
         ├── components
         │   ├── .DS_Store
         │   ├── images
         │   │   └── logo2.png
-        │   ├── mainPage
+        │   ├── mainPage                                 #Mainpage and its components
         │   │   ├── List
         │   │   │   ├── List.css
         │   │   │   ├── List.js
@@ -96,7 +99,7 @@ To get started you can simply clone the repo and install the dependencies in the
         │   │       ├── TagBar.js
         │   │       ├── TagItem.css
         │   │       └── TagItem.js
-        │   ├── modals
+        │   ├── modals                      #Popout Modals with different functions
         │   │   ├── AddItemModal.css
         │   │   ├── AddItemModal.js
         │   │   ├── AddTagModal.css
@@ -112,7 +115,7 @@ To get started you can simply clone the repo and install the dependencies in the
         │   │   └── modalButtons
         │   │       ├── AddItemButtons.css
         │   │       └── AddItemButtons.js
-        │   └── navBar
+        │   └── navBar                                    #NavBar with its components
         │       ├── AddItem.js
         │       ├── LoginButton.js
         │       ├── NavBar.css
@@ -120,10 +123,10 @@ To get started you can simply clone the repo and install the dependencies in the
         │       ├── RegisterButton.js
         │       ├── SearchBar.css
         │       └── SearchBar.js
-        ├── context
+        ├── context                          #Context file for authenticaton&search
         │   ├── AuthContext.js
         │   └── SearchContext.js
-        ├── hooks
+        ├── hooks                             #Hooks used
         │   ├── auth-hook.js
         │   └── http-hook.js
         ├── index.css
@@ -132,3 +135,7 @@ To get started you can simply clone the repo and install the dependencies in the
         ├── logo.png
         ├── serviceWorker.js
         └── setupTests.js
+
+
+
+```
