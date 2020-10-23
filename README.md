@@ -1,5 +1,9 @@
 # To-do-list App by Hanbing
 
+Frontend Deployment:https://mern-todolist-hanbing.web.app/
+Backend Deployment: https://aqueous-springs-29674.herokuapp.com
+
+
 <h2>Getting Started</h2>
 
 To get started you can simply clone the repo and install the dependencies in the root `folder`
