@@ -51,7 +51,7 @@ const SearchResult = (props) => {
       <div className='searchListContainer'>
         {/* <button onClick={searchItems}>button</button> */}
         {searchResult && (
-          <List className='List' items={searchResult} onDeleteItem={itemDeleteHandler} />
+          <List className='List' items={searchResult} onDeleteItem={itemDeleteHandler} onChange={props.onChange}/>
         )}
       </div>
     </div>

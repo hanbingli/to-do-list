@@ -20,7 +20,7 @@ const AddItemModal = props =>{
     const [error, setError] = useState(null);
     const [addTagModalOpen, setAddTagModalOpen] = useState(false);
     const [tags, setTags] = useState([]);
-    const [onsubmit, setOnsubmit] = useState(false);
+    
 
     const openAddTagModal = () =>{
       setAddTagModalOpen(true)
@@ -57,8 +57,8 @@ const AddItemModal = props =>{
         console.log(inputData);
         console.log(userId);
         console.log(token);
-        setOnsubmit(!onsubmit);
         history.push('/')
+        props.onChange();
         
 
     try{
@@ -80,6 +80,7 @@ const AddItemModal = props =>{
       console.log(responseData)
 
     props.switch()
+    alert('Item added successfully, please refresh your page')
    
     }catch(err){
       console.log(err)

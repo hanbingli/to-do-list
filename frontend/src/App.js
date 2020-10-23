@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 import './App.css';
 
 import NavBar from './components/navBar/NavBar';
@@ -18,9 +18,17 @@ import { useAuth } from './hooks/auth-hook'
 
 function App() {
 
+
   const { token, login, logout, userId } = useAuth();
 
   const [searchInputValue, setSearchInputValue] = useState(null);
+  const [onComponentChange, setOnComponentChange] = useState(false);
+  const history = useHistory();
+
+  const componentChangeHandler = () =>{
+    setOnComponentChange(!onComponentChange)
+  }
+
 
   let routes;
 
@@ -28,10 +36,10 @@ function App() {
     routes = (
       <Switch>
         <Route path="/" exact>
-          <MainPage />
+          <MainPage onChange={componentChangeHandler} />
         </Route>
         <Route path="/search" exact>
-          <SearchResult />
+          <SearchResult onChange={componentChangeHandler}/>
         </Route>
       </Switch>
     )
@@ -66,8 +74,8 @@ function App() {
           searchInputHandler: setSearchInputValue
         }}
       >
-        <Router>
-          <NavBar />
+        <Router history = {history}>
+          <NavBar onChange={componentChangeHandler}/>
           <main>{routes}</main>
         </Router>
       </SearchContext.Provider>

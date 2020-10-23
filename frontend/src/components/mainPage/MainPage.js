@@ -7,14 +7,15 @@ import { SearchContext } from '../../context/SearchContext';
 import SearchResult from './SearchResult'
 
 import './MainPage.css';
+import { PromiseProvider } from 'mongoose';
 
 
 
-const MainPage = () => {
+const MainPage = (props) => {
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const { searchInput, searchInputHandler } = useContext(SearchContext);
-  const [onComponentChange, setOnComponentChange] = useState(false);
+  // const [onComponentChange, setOnComponentChange] = useState(false);
 
   const auth = useContext(AuthContext);
   const userId = auth.userId;
@@ -22,9 +23,6 @@ const MainPage = () => {
   console.log(searchInput)
  
   const [loadedItems, setLoadedItems] = useState([]);
-  const componentChangeHandler = () =>{
-    setOnComponentChange(!onComponentChange)
-  }
 
   const itemDeleteHandler = (deletedItemId) =>{
     setLoadedItems((prevItems)=>{
@@ -121,7 +119,7 @@ const MainPage = () => {
               </div> */}
               {loadedItems && (
               <div className='ListContainer'>
-                  <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler} onChange={componentChangeHandler}/>
+                  <List className = 'List' items = {loadedItems} onDeleteItem = {itemDeleteHandler} onChange={props.onChange}/>
               </div>
               )}
                {/* {searchInput  && (

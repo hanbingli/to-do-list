@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import './ListItem.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +16,7 @@ const ListItem = (props) =>{
     const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const [editItemModalOpen, setEditItemModalOpen] = useState(false);
+    const history = useHistory();
 
     const userId = props.userId
     const itemId = props.id
@@ -124,7 +126,8 @@ const ListItem = (props) =>{
               }
             );
             props.onDelete(itemId)
-            alert('Item successfully deleted, please refresh your page')
+            alert('Item successfully deleted.');
+            history.push('/')
             props.onChange()
           } catch (err) {}
   

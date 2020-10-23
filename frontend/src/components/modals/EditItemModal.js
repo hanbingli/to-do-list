@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 
 import AddItemButtons from './modalButtons/AddItemButtons';
 import { AuthContext } from '../../context/AuthContext';
@@ -16,7 +17,8 @@ const EditItemModal = props =>{
     const itemId = props.itemId;
     const prevTaskName = props.taskName;
     const prevTag = props.tag;
-    // const response;
+    const history = useHistory();
+
     
 
     const [error, setError] = useState(null);
@@ -42,6 +44,7 @@ const EditItemModal = props =>{
     const submitHandler = async (event) =>{
         event.preventDefault();
         console.log(inputData);
+        history.push('/')
         props.onChange()
         
 

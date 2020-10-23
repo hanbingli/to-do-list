@@ -13,11 +13,12 @@ import Backdrop from '../modals/Backdrop'
 import LoginModal from '../modals/LoginModal';
 import RegisterModal from '../modals/RegisterModal';
 import { AuthContext } from '../../context/AuthContext';
+import { PromiseProvider } from 'mongoose';
 
 
 
 
-const NavBar = () =>{
+const NavBar = (props) =>{
     const auth = useContext(AuthContext);
     const token = auth.token;
 
@@ -61,7 +62,7 @@ const NavBar = () =>{
     return(
         <React.Fragment>
             {addItemModalOpen && <Backdrop onClick={onCancel} />}
-            {addItemModalOpen && <AddItemModal switch={closeAddItemModel} />}
+            {addItemModalOpen && <AddItemModal switch={closeAddItemModel} onChange={props.onChange}/>}
 
             {loginModalOpen && <Backdrop onClick={onCancel} />}
             {loginModalOpen && <LoginModal switch={closeLoginModel} />}
@@ -86,7 +87,7 @@ const NavBar = () =>{
                     )}
                 </div>
                 <div className ="addItemContainer">
-                    {token &&  <AddItem onClick={addItemHandler} /> }
+                    {token &&  <AddItem onClick={addItemHandler}  /> }
                    
                 </div>
                 {!auth.isLoggedIn && (
