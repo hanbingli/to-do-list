@@ -7,12 +7,12 @@ const itemsControllers = require('../controllers/items-controllers')
 
 const router = express.Router();
 
-// router.use(checkAuth);
+
 
 router.get('/:uid', itemsControllers.getItems);
 router.get('/:uid/search', itemsControllers.searchItems);
 
-
+router.use(checkAuth);
 router.post('/:uid', 
     [check('title')
         .not()

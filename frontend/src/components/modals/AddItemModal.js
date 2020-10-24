@@ -65,9 +65,9 @@ const AddItemModal = props =>{
         const response = await fetch( `${process.env.REACT_APP_ASSET_URL}/api/items/${userId}`, {
         method: 'POST', 
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json', 
+          Authorization:  "Bearer " + auth.token,
         }, 
-        Authorization: "Bearer " + auth.token,
         body: JSON.stringify({
           title: inputData.taskName, 
           date: inputData.taskDate,
