@@ -4,19 +4,19 @@
 
 <h2>App functions:</h2>
 <ul>
-<li>- Signup/login with modals in homepage.</li>
-<li>- Access to one's own to-do list with authentication.</li>
-<li>- Click on "+" sign to add one's own to-do list.</li>
-<li>- Complete/Edit/Delete function for each to-do list item.</li>
-<li>- Search page that allows user to browse items with keyword.</li>
-<li>- Click on logo pic at topleft corner to jump to homepage.</li>
+<li> Signup/login with modals in homepage.</li>
+<li> Access to one's own to-do list with authentication.</li>
+<li> Click on "+" sign to add one's own to-do list.</li>
+<li> Complete/Edit/Delete function for each to-do list item.</li>
+<li> Search page that allows user to browse items with keyword.</li>
+<li> Click on logo pic at topleft corner to jump to homepage.</li>
 </ul>
 
 <h2>Deployment: </h2>
 Now the online deployment of the project is available at: 
 https://mern-todolist-hanbing.web.app/
 
-(Backend Deployment: https://aqueous-springs-29674.herokuapp.com)
+(Backend Deployment: https://mern-to-do-list-hanbing.herokuapp.com/)
 
 
 <h2>Getting Started with files</h2>
